@@ -8,7 +8,14 @@ dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+
+// Configurez CORS pour autoriser votre domaine frontend
+const corsOptions = {
+  origin: "https://validation-paiement.vercel.app",
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 7000;
 const MONGOURL = process.env.MONGO_URL;
@@ -34,7 +41,7 @@ const paiementSchema = new mongoose.Schema({
 const Paiement = mongoose.model("Paiement", paiementSchema);
 
 app.get('/api', (req, res) => {
-  res.json({ message: "nouvelle mise à jour"});
+  res.json({ message: "nouvelle mise à jour" });
 });
 
 app.post("/api/paiements", async (req, res) => {
