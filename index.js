@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const PORT = 7000;
-const MONGOURL = "mongodb+srv://pizo:pizo@vidange.zlbhl.mongodb.net/";
+const MONGOURL = "mongodb+srv://pizo:pizo@vidange.zlbhl.mongodb.net/vidange";
 
 mongoose
   .connect(MONGOURL)
