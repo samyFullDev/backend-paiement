@@ -31,6 +31,10 @@ const paiementSchema = new mongoose.Schema({
 
 const Paiement = mongoose.model("Paiement", paiementSchema);
 
+app.get('/api', (req, res) => {
+  res.json({ message: "nouvelle mise à jour"})
+})
+
 app.post("/api/paiements", async (req, res) => {
   const { fullname, nom, devise, montant, code } = req.body;
   const paiement = new Paiement({
