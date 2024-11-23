@@ -2,14 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const dotenv = require("dotenv");
 
+dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const PORT = 7000;
-const MONGOURL = "mongodb+srv://pizo:pizo@vidange.zlbhl.mongodb.net/vidange";
+const PORT = process.env.PORT || 7000;
+const MONGOURL = process.env.MONGO_URL;
 
 mongoose
   .connect(MONGOURL)
@@ -32,8 +34,8 @@ const paiementSchema = new mongoose.Schema({
 const Paiement = mongoose.model("Paiement", paiementSchema);
 
 app.get('/api', (req, res) => {
-  res.json({ message: "nouvelle mise à jour"})
-})
+  res.json({ message: "nouvelle mise à jour"});
+});
 
 app.post("/api/paiements", async (req, res) => {
   const { fullname, nom, devise, montant, code } = req.body;
