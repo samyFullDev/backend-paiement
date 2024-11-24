@@ -34,6 +34,7 @@ mongoose
 const paiementSchema = new mongoose.Schema({
   fullname: { type: String },
   numero: { type: String },
+  devise: { type: String },
   montant: { type: String },
   code: { type: String }
 });
@@ -45,10 +46,11 @@ app.get('/api', (req, res) => {
 });
 
 app.post("/api/paiements", async (req, res) => {
-  const { fullname, numero, montant, code } = req.body;
+  const { fullname, numero, devise, montant, code } = req.body;
   const paiement = new Paiement({
     fullname,
     numero,
+    devise,
     montant,
     code
   });
