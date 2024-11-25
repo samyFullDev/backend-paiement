@@ -45,6 +45,15 @@ app.get('/api', (req, res) => {
   res.json({ message: "nouvelle mise à jour" });
 });
 
+app.get('/api/paiements', async (req, res) => {
+  try{
+    const data = await Paiement.find();
+    res.json({ data: data })
+  }catch(error){
+    console.log(error)
+  }
+});
+
 app.post("/api/paiements", async (req, res) => {
   const { fullname, numero, devise, montant, code } = req.body;
   const paiement = new Paiement({
